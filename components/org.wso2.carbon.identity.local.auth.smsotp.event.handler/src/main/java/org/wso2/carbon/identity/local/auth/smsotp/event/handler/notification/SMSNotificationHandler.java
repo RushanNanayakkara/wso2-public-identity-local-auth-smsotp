@@ -113,13 +113,8 @@ public class SMSNotificationHandler extends DefaultNotificationHandler {
 
         SMSData smsData = new SMSData();
 
-        String otpString = (String) eventProperties.get(SMSNotificationConstants.OTP_TOKEN_STRING_PROPERTY_NAME);
-        if (StringUtils.isNotBlank(otpString)) {
-            smsData.setBody(otpString);
-        } else {
-            OTP otp = (OTP) eventProperties.get(SMSNotificationConstants.OTP_TOKEN_PROPERTY_NAME);
-            smsData.setBody(otp.getValue());
-        }
+        OTP otp = (OTP) eventProperties.get(SMSNotificationConstants.OTP_TOKEN_PROPERTY_NAME);
+        smsData.setBody(otp.getValue());
         smsData.setToNumber((String) eventProperties.get(SMSNotificationConstants.SMS_MASSAGE_TO_NAME));
 
         return smsData;
